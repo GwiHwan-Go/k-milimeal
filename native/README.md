@@ -8,3 +8,4 @@ npm i styled-components
 expo install react-native-appearance
 npm install @apollo/client graphql
 npm i @react-navigation/bottom-tabs 
+expo install @react-native-async-storage/async-storage

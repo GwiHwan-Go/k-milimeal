@@ -5,7 +5,7 @@ import AuthButton from "../components/auth/AuthButton";
 import AuthLayout from "../components/auth/AuthLayout";
 import { TextInput } from "../components/auth/AuthShared";
 import { gql, useMutation } from "@apollo/client";
-import { isLoggedInVar } from "../apollo";
+import {  logUserIn } from "../apollo";
 
 const LOGIN_MUTATION = gql`
   mutation login($username: String!, $password: String!) {
@@ -15,27 +15,32 @@ const LOGIN_MUTATION = gql`
       error
     }
   }
+  
 `;
 
-export default function Login() {
-    const { register, handleSubmit, setValue, watch } = useForm();
+export default function Login({route : {params}}) {
+    const { register, handleSubmit, setValue, watch } = useForm({
+      defaultValues: {
+        password:params?.password,
+        username:params?.username,
+      }
+    });
     const passwordRef = useRef();
-    const onCompleted = (data) => {
+    const onCompleted = async (data) => {
         console.log(data)
-        const {
-          login: { ok, token },
-        } = data;
+        const { login: { ok, token }, } = data;
         if (ok) {
-          isLoggedInVar(true);
+          await logUserIn(token)
         }
       };
-      const [logInMutation, { loading }] = useMutation(LOGIN_MUTATION, {
-        onCompleted,
+    const [logInMutation, { loading }] = useMutation(LOGIN_MUTATION, {
+      onCompleted,
       });
     const onNext = (nextOne) => {
       nextOne?.current?.focus();
     };
     const onValid = (data) => {
+      console.log('logindata=',data)
         if (!loading) {
             logInMutation({
               variables: {
@@ -43,6 +48,7 @@ export default function Login() {
               },
             });
           }
+        
     };
   
     useEffect(() => {
@@ -53,6 +59,7 @@ export default function Login() {
             required: true,
           });
     }, [register]);
+  
   
     return (
       <AuthLayout>
