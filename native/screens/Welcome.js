@@ -7,7 +7,6 @@ import AuthButton from "../components/auth/AuthButton";
 import AuthLayout from "../components/auth/AuthLayout";
 
 
-
 const LoginLink = styled.Text`
   color: ${colors.blue};
   font-size : 18px
@@ -27,6 +26,7 @@ export default function Welcome({ navigation }) {
     
     const goToCreateAccount = () => navigation.navigate("CreateAccount");
     const goToLogIn = () => navigation.navigate("LogIn");
+    const goToLoggedInNav = () => navigation.navigate("LoggedInNav");
 
     return (
     <AuthLayout>
@@ -37,6 +37,8 @@ export default function Welcome({ navigation }) {
         />
         <TouchableOpacity onPress={goToLogIn}>
             <LoginLink>로그인</LoginLink>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={goToLoggedInNav}>
             <SeeLink>둘러 보기</SeeLink>
         </TouchableOpacity>
     </AuthLayout>

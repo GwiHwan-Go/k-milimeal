@@ -1,22 +1,8 @@
 import React, { Component } from 'react'
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {LocaleConfig} from 'react-native-calendars';
-import { ActivityIndicator, Text, TextInput, View } from "react-native";
 import styled from "styled-components/native";
-import { useForm } from 'react-hook-form';
-import { useEffect } from 'react/cjs/react.production.min';
 import dot_info from './Calendar_dot';
-
-const MessageContainer = styled.View`
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-`;
-const MessageText = styled.Text`
-  margin-top: 15px;
-  color: white;
-  font-weight: 600;
-`;
 
 const Input = styled.TextInput``;
 LocaleConfig.locales['fr'] = {
@@ -27,19 +13,6 @@ LocaleConfig.locales['fr'] = {
   today: 'Aujourd\'hui'
 };
 LocaleConfig.defaultLocale = 'fr';
-const UserAvatar = styled.Image`
-  margin-bottom: 34px;
-  width: 50px;
-  height: 45px;
-  border-radius: 12.5;
-`;
-const blue = {key: 'blue', color: 'blue', selectedDotColor: 'blue'};
-const red = {key: 'red', color: 'red', selectedDotColor: 'red'};
-const orange = {key: 'orange', color: 'orange', selectedDotColor: 'orange'};
-const yellow = {key: 'yellow', color: 'yellow', selectedDotColor: 'yellow'};
-const green = {key: 'green', color: 'green', selectedDotColor: 'green'};
-const skyblue = {key: 'skyblue', color: 'skyblue', selectedDotColor: 'skyblue'};
-const black = {key: 'black', color: 'black', selectedDotColor: 'black'};
 
 export default function SearchCalendar({navigation}) {
 
