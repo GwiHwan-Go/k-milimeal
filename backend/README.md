@@ -1,4 +1,4 @@
-#Instaclone
+#for backend set-up
 
 #Set up
 mkdir -> mk git repository and add -> npm init -y -> code .
