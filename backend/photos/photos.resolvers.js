@@ -16,9 +16,6 @@ export default{
                 }
             }
         }),
-        likesNumber : ({id}) => client.like.count({
-            where : {photoId : id}
-        }),
         comments : ({id}) => client.comment.count({
             where : {photoId: id}
         }),
@@ -39,6 +36,10 @@ export default{
                     { id}
 
             }},
-        })
+        }),
+        
+        likesNumber : ({id}) => client.like.count({
+            where : {hashtagId : id}
+        }),
     }}
 

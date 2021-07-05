@@ -12,7 +12,7 @@ export default {
                 hashtagObjs = processHashtags(caption);
             }
             const fileUrl = await uploadToS3(file, loggedInUser.id, "uploads");
-            
+            console.log("fileURl",fileUrl)
                 return client.photo.create({
                     data: {
                         file: fileUrl,

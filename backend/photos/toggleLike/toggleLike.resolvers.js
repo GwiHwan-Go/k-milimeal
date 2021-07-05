@@ -4,31 +4,31 @@ import { protectedResolver } from "../../users/users.utils";
 export default{
     Mutation: {
         toggleLike: protectedResolver(async (_, {id}, {loggedInUser}) => {
-            const photo = await client.photo.findUnique({
+            const hashtag = await client.hashtag.findUnique({
                 where: {
                     id
                 }
             });
-            if (!photo){
+            if (!hashtag){
                 return {
                     ok: false,
-                    error: "Photo not found",
+                    error: "hashtag not found",
                 }
             }
             const like = await client.like.findUnique({
                 where : {
-                    photoId_userId: {
+                    hashtagId_userId: {
                         userId: loggedInUser.id,
-                        photoId: id,
+                        hashtagId: id,
                     }
                 }
             });
             if(like){
                 await client.like.delete({
                     where : {
-                        photoId_userId: {
+                        hashtagId_userId: {
                             userId: loggedInUser.id,
-                            photoId: id,
+                            hashtagId: id,
                         }
                     } 
                 })
@@ -40,7 +40,7 @@ export default{
                                 id : loggedInUser.id
                             }
                         },
-                        photo : {
+                        hashtag : {
                             connect : {
                                 id
                             }
